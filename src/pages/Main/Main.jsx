@@ -6,6 +6,8 @@ import {getCategories, getNews} from "../../api/apiNews.js";
 import NewsList from "../../Components/NewsList/NewsList.jsx";
 import Pagination from "../../Components/Pagination/Pagination.jsx";
 import Categories from "../../Components/Categories/Categories.jsx";
+import Search from "../../Components/Search/Search.jsx";
+import {useDebounce} from "../../Components/hooks/useDebounce.js";
 
 const Main = () => {
 
@@ -14,9 +16,12 @@ const Main = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [categories, setCategories] = useState([])
     const [selectCategory, setSelectCategory] = useState("All")
+    const [keywords, setKeywords] = useState('')
 
     const totalPages = 10
     const pageSize = 10
+
+    const debouncedKeywords = useDebounce(keywords, 500)
 
     const fetchNews = async (currentPage) => {
         try{
@@ -25,6 +30,7 @@ const Main = () => {
                 page_number: currentPage,
                 page_size: pageSize,
                 category: selectCategory === "All" ? null : selectCategory,
+                keywords: debouncedKeywords,
             })
             setNews(response.news)
             setIsLoading(false)
@@ -49,7 +55,7 @@ const Main = () => {
 
     useEffect(() => {
         fetchNews(currentPage)
-    }, [currentPage, selectCategory]);
+    }, [currentPage, selectCategory, debouncedKeywords]);
 
     const handleNextPage = () => {
         if (currentPage < totalPages) {
@@ -70,7 +76,12 @@ const Main = () => {
     return (
         <main className={s.main}>
 
-            <Categories categories={categories} selectCategory={selectCategory} setSelectCategory={setSelectCategory}/>
+            <Categories categories={categories}
+                        selectCategory={selectCategory}
+                        setSelectCategory={setSelectCategory}
+            />
+
+            <Search keywords={keywords} setKeywords={setKeywords}/>
 
             {news.length > 0 && !isLoading ? (
                 <NewsBanner item={news[0]}/>
