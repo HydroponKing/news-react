@@ -4,9 +4,10 @@ import s from './Search.module.css'
 const Search = ({ keywords, setKeywords }) => {
     return (
         <div className={s.search}>
-            <input type='text'value={keywords}
+            <input type='text'
+                   value={keywords}
                    className={s.input}
-                    onChange={(e)=>setKeywords(e.target.value)}
+                   onChange={(e)=>setKeywords(e.target.value)}
                    placeholder="Поиск..."
             />
         </div>
