@@ -1,4 +1,3 @@
-import React from 'react';
 import {formatDate} from "../../helpers/formatDate.js";
 import s from './Header.module.css'
 
