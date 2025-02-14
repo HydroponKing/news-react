@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 
+interface FetchFunction
+
 export const useFetch   = (fetchFunction, prams) => {
     const [data, setData] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
