@@ -1,11 +1,12 @@
 import s from './LatestNews.module.css'
-import BannerList from "../BannersList/BannersList.jsx";
-import {useFetch} from "../../helpers/hooks/useFetch.js";
-import {getLatestNews, getNews} from "../../api/apiNews.js";
+import BannerList from "../BannersList/BannersList.tsx";
+import { useFetch } from "../../helpers/hooks/useFetch.ts";
+import { getLatestNews } from "../../api/apiNews.ts";
+import { NewsApiResponse } from '../../interfaces/index.ts';
 
 const LatestNews = () => {
 
-    const { data, isLoading} = useFetch(getLatestNews)
+    const { data, isLoading } = useFetch<NewsApiResponse, null>(getLatestNews);
 
     return (
         <section className={s.section}>

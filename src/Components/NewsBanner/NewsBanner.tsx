@@ -1,9 +1,13 @@
-import React from 'react';
 import s from './NewsBanner.module.css'
-import Image from "../../Image/Image.jsx";
-import {formatTimeAgo} from '../../helpers/formatTimeAgo.js'
+import Image from "../../Image/Image.tsx";
+import {formatTimeAgo} from '../../helpers/formatTimeAgo.ts'
+import {INews} from '../../interfaces'
 
-const NewsBanner = ({ item }) => {
+interface Props {
+    item: INews;
+}
+
+const NewsBanner = ({ item }: Props) => {
     return (
         <div className={s.banner}>
             <Image image={item?.image} />
