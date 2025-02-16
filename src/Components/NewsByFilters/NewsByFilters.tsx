@@ -1,13 +1,13 @@
 import s from './NewsByFilters.module.css'
-import {PAGE_SIZE, TOTAL_PAGE} from "../../constants/constants.js";
-import {useFetch} from "../../helpers/hooks/useFetch.js";
-import {getNews} from "../../api/apiNews.js";
-import NewsList from "../NewsList/NewsList.jsx";
-import NewsFilters from "../NewsFilters/NewsFilters.jsx";
-import {useFilters} from "../../helpers/hooks/useFilters.js";
-import {useDebounce} from "../../helpers/hooks/useDebounce.js";
-import PaginationWrapper from "../PaginationWrapper/PaginationWrapper.jsx";
-
+import {PAGE_SIZE, TOTAL_PAGE} from "../../constants/constants.ts";
+import {useFetch} from "../../helpers/hooks/useFetch.ts";
+import {getNews} from "../../api/apiNews.ts";
+import NewsList from "../NewsList/NewsList.tsx";
+import NewsFilters from "../NewsFilters/NewsFilters.tsx";
+import {useFilters} from "../../helpers/hooks/useFilters.ts";
+import {useDebounce} from "../../helpers/hooks/useDebounce.ts";
+import PaginationWrapper from "../PaginationWrapper/PaginationWrapper.tsx";
+import { NewsApiResponse, ParamsType } from '../../interfaces/index.ts';
 
 const NewsByFilters = () => {
 
@@ -20,7 +20,7 @@ const NewsByFilters = () => {
 
     const debouncedKeywords = useDebounce(filters.keywords, 500)
 
-    const { data, isLoading} = useFetch(getNews, {
+    const { data, isLoading} = useFetch<NewsApiResponse, ParamsType>(getNews, {
         ...filters,
         keywords: debouncedKeywords,
     } )
@@ -38,7 +38,7 @@ const NewsByFilters = () => {
         }
     }
 
-    const handlePageClick = (pageNumber) => {
+    const handlePageClick = (pageNumber: number) => {
         changeFilters('page_number', pageNumber)
     }
 

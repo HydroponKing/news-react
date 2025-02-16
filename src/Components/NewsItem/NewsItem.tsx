@@ -1,8 +1,12 @@
-import React from 'react';
-import {formatTimeAgo} from "../../helpers/formatTimeAgo.js";
+import {formatTimeAgo} from "../../helpers/formatTimeAgo.ts";
 import s from './NewsItem.module.css'
+import {INews} from "../../interfaces";
 
-const NewsItem = ( {item} ) => {
+interface Props {
+    item: INews
+}
+
+const NewsItem = ( { item }: Props ) => {
     return (
         <li className={s.item}>
             <div className={s.wrapper}
