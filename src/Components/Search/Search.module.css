@@ -4,6 +4,15 @@
     background-color: white;
     gap: 12px;
 }
+
+.dark {
+    background-color: #23272f;
+}
+
+.light {
+    background-color: white;
+}
+
 .input {
     width: 100%;
     padding: 10px;

@@ -5,6 +5,7 @@ import {useFetch} from "../../helpers/hooks/useFetch.ts";
 import {getCategories} from "../../api/apiNews.ts";
 import Slider from "../Slider/Slider.tsx";
 import {CategoriesApiResponse, IFilters} from "../../interfaces";
+import { useTheme } from '../../Context/ThemeContext.tsx';
 
 interface Props {
     filters: IFilters
@@ -12,14 +13,15 @@ interface Props {
 }
 
 const NewsFilters = ({ filters, changeFilters }: Props) => {
-
+    
+    const {isDark} = useTheme()
     const {data: dataCategories} = useFetch<CategoriesApiResponse, null>(getCategories)
 
 
     return (
         <div className={s.filters}>
             {dataCategories ? (
-                <Slider>
+                <Slider isDark={isDark}>
                     <Categories
                         categories={dataCategories.categories}
                         selectCategory={filters.category}
@@ -28,7 +30,10 @@ const NewsFilters = ({ filters, changeFilters }: Props) => {
                 </Slider>
             ) : null}
 
-            <Search keywords={filters.keywords} setKeywords={(keywords)=>changeFilters?.('keywords', keywords)}/>
+            <Search 
+             keywords={filters.keywords}
+             setKeywords={(keywords)=>changeFilters?.('keywords', keywords)}
+             />
         </div>
     );
 };
