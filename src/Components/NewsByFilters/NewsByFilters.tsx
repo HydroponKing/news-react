@@ -9,6 +9,7 @@ import {useDebounce} from "../../helpers/hooks/useDebounce.ts";
 import PaginationWrapper from "../PaginationWrapper/PaginationWrapper.tsx";
 import { NewsApiResponse, ParamsType } from '../../interfaces/index.ts';
 
+
 const NewsByFilters = () => {
 
     const { filters, changeFilters} = useFilters({
@@ -54,6 +55,7 @@ const NewsByFilters = () => {
                 handlePageClick={handlePageClick}
                 totalPages={TOTAL_PAGE}
                 currentPage={filters.page_number}
+               
             >
                 <NewsList isLoading={isLoading} news={data?.news}/>
             </PaginationWrapper>

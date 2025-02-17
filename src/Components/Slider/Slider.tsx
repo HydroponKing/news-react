@@ -5,9 +5,10 @@ import React from 'react';
 interface Props {
     children: React.ReactElement
     step?: number
+    isDark: boolean
 }
 
-const Slider = ({ children, step =150 }: Props) => {
+const Slider = ({ children, step =150, isDark }: Props) => {
 
     const sliderRef = useRef<HTMLDivElement | null>(null);
 
@@ -22,7 +23,7 @@ const Slider = ({ children, step =150 }: Props) => {
     }
 
     return (
-        <div className={s.slider}>
+        <div className={`${s.slider} ${isDark ? s.dark : s.light}`}>
             <button onClick={scrollLeft} className={s.arrow}>{'<'}</button>
             {React.cloneElement(children, {ref: sliderRef})}
             <button onClick={scrollRight} className={s.arrow}>{'>'}</button>

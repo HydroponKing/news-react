@@ -1,11 +1,26 @@
 .header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     padding: 12px 24px;
     background-color: white;
     border-bottom: #f2f4f5 solid 1px;
+}
+
+.info {
+    display: flex;
     flex-direction: column;
     gap: 12px;
+}
+
+.dark {
+    background-color: #23272f;
+    border-bottom: rgb(60, 60, 60) solid 1px;
+}
+
+.light {
+    background-color: white;
 }
 
 .title {
